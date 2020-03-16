@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default StyleSheet.create({
     mainStyle: {
@@ -8,5 +9,12 @@ export default StyleSheet.create({
     titleStyle: {
       padding: 20, 
       fontSize: 15
+    },
+    inputStyle: {
+      backgroundColor: "white",
+      height: 40
+    },
+    bodyStyle: {
+      backgroundColor: "white",
     }
 });
