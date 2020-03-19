@@ -7,7 +7,7 @@ import style from '../styles/Stylesheet';
 
 function CreateScreen({navigation}) {
 
-    const {alerts, setAlerts} = useContext(AlertContext);
+    const {addAlert, formatTime} = useContext(AlertContext);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
 
@@ -15,10 +15,6 @@ function CreateScreen({navigation}) {
     const [date, setDate] = useState(new Date(1598051730000));
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
-
-    const addAlert = (newAlert) => {
-        setAlerts([...alerts, newAlert])
-    }
 
     return (
       <View>
@@ -38,10 +34,20 @@ function CreateScreen({navigation}) {
             value={body}
         />
         <DateFields props={{date, setDate, mode, setMode, show, setShow}}/>
-        <Text>{date.toString()}</Text>
+        <>
+          <Text>{date.toDateString()}</Text>
+          <Text>{formatTime(date.toLocaleTimeString('en-US'))}</Text>
+        </>
         <Button
             title="Create New Alert"
-            onPress={() => addAlert({title: 'test'})}
+            onPress={() => addAlert(
+              {
+                title: title,
+                body: body,
+                date: date
+              },
+              navigation.navigate('Home')
+            )}
           />
       </View>
     );

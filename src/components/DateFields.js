@@ -39,7 +39,7 @@ function DateFields({props}){
           timeZoneOffsetInMinutes={0}
           value={date}
           mode={mode}
-          is24Hour={true}
+          is24Hour={false}
           display="default"
           onChange={onChange}
         />

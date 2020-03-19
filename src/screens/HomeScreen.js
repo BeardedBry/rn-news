@@ -13,7 +13,9 @@ function HomeScreen({navigation}) {
         }
     */
 
-    const {alerts, setAlerts} = useContext(AlertContext);
+    const {alerts} = useContext(AlertContext);
+
+    console.log(alerts);
 
     return (
       <View style={styles.mainStyle}>
@@ -30,7 +32,7 @@ function HomeScreen({navigation}) {
                 keyExtractor={(alert)=>alert.title.toString()}
                 renderItem={({item}) => {
                     return (
-                        <Text>{item.title}</Text>
+                      eventCard(item)
                     );
                 }}
             />
@@ -39,5 +41,14 @@ function HomeScreen({navigation}) {
     );
 }
 
+function eventCard({title, body, date}) {
+  return (
+    <View>
+      <Text>{title}</Text>
+      <Text>{body}</Text>
+      <Text>{date}</Text>
+    </View>
+  );
+}
 
 export default HomeScreen;
