@@ -28,10 +28,10 @@ function DateFields({props}){
   return (
     <View style={{margin: 10}}>
       <View style={{paddingBottom: 5}}>
-        <Button onPress={showDatepicker} title="Show date picker!" />
+        <Button onPress={showDatepicker} title="Choose Date" />
       </View>
       <View>
-        <Button onPress={showTimepicker} title="Show time picker!" />
+        <Button onPress={showTimepicker} title="Choose Time" />
       </View>
       {show && (
         <DateTimePicker

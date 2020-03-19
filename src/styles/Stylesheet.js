@@ -16,5 +16,16 @@ export default StyleSheet.create({
     },
     bodyStyle: {
       backgroundColor: "white",
+    },
+    alertCardStyle: {
+      padding: 15,
+      margin: 5,
+      backgroundColor: "white"
+    },
+    hr: {
+      borderBottomColor: 'black',
+      borderBottomWidth: 1,
+      marginTop: 5,
+      marginBottom: 5
     }
 });

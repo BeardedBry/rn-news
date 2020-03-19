@@ -7,36 +7,37 @@ import style from '../styles/Stylesheet';
 
 function CreateScreen({navigation}) {
 
-    const {addAlert, formatTime} = useContext(AlertContext);
+    const {addAlert, formatDateAndTime} = useContext(AlertContext);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
 
     // for date picker
-    const [date, setDate] = useState(new Date(1598051730000));
+    const [date, setDate] = useState(new Date(Date.now()));
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
     return (
       <View>
         <Text>Create Alert</Text>
-        <Text>Alert Title:</Text>
+        <Text>Title:</Text>
         <TextInput
             style={style.inputStyle}
             onChangeText={text => setTitle(text)}
             value={title}
         />
-        <Text>Alert Body:</Text>
+        <Text>Short Description:</Text>
         <TextInput
             multiline
-            numberOfLines={4}
+            numberOfLines={1}
             style={style.bodyStyle}
             onChangeText={text => setBody(text)}
             value={body}
         />
         <DateFields props={{date, setDate, mode, setMode, show, setShow}}/>
         <>
-          <Text>{date.toDateString()}</Text>
-          <Text>{formatTime(date.toLocaleTimeString('en-US'))}</Text>
+          {/* <Text>{date.toDateString()}</Text>
+          <Text>{formatTime(date.toLocaleTimeString('en-US'))}</Text> */}
+          <Text>{ formatDateAndTime(date) }</Text>
         </>
         <Button
             title="Create New Alert"

@@ -1,26 +1,19 @@
 import React, {useContext} from 'react';
-import { Button, View, Text, StyleSheet, FlatList } from 'react-native';
+import { Button, View, Text, FlatList } from 'react-native';
 import styles from '../styles/Stylesheet';
 import AlertContext from '../context/AlertsContext';
+import AlertCard from '../components/AlertCard';
 
 function HomeScreen({navigation}) {
-    /*
-        alert = {
-            title: 'Dentist Appointment',
-            Date: '03-20-2020',
-            Time: '3:00',
 
-        }
-    */
 
-    const {alerts} = useContext(AlertContext);
-
+    const {alerts, formatDateAndTime} = useContext(AlertContext);
     console.log(alerts);
 
     return (
       <View style={styles.mainStyle}>
         <Text style={styles.titleStyle}>Alert App</Text>
-        <View style={{alignSelf: 'flex-start'}}>
+        <View style={{margin: 5}}>
           <Button
             title="Create New Alert"
             onPress={() => navigation.navigate('Create')}
@@ -32,7 +25,7 @@ function HomeScreen({navigation}) {
                 keyExtractor={(alert)=>alert.title.toString()}
                 renderItem={({item}) => {
                     return (
-                      eventCard(item)
+                      AlertCard(item, formatDateAndTime)
                     );
                 }}
             />
@@ -41,12 +34,14 @@ function HomeScreen({navigation}) {
     );
 }
 
-function eventCard({title, body, date}) {
+function alertCard({title, body, date}, format) {
+
   return (
-    <View>
+    <View style={styles.alertCardStyle}>
       <Text>{title}</Text>
       <Text>{body}</Text>
-      <Text>{date}</Text>
+      <View style={styles.hr}/>
+      <Text>{format(date)}</Text>
     </View>
   );
 }

@@ -17,14 +17,22 @@ function formatTime(time) {
     hh = (hh == '00') ? 12 : hh; 
   
     return `${hh}:${mm} ${suffix}`;
-  }
+}
+
+function formatDateAndTime(date) {
+    let dateString = date.toDateString();
+    let timeString = formatTime(date.toLocaleTimeString('en-US'));
+    return `${dateString} at ${timeString}`;
+}
+
+
 
 export const AlertProvider = ({ children }) => {
     const [alerts, setAlerts] = useState([]);
 
     const addAlert = ({title, body, date}, cb) => {
-        var displayDate = `${date.toDateString()} at ${formatTime(date.toLocaleTimeString('en-US'))}`;
-        date = displayDate;
+        // var displayDate = `${date.toDateString()} at ${formatTime(date.toLocaleTimeString('en-US'))}`;
+        // date = displayDate;
         setAlerts([...alerts, {title, body, date}])
         if(cb){
             cb();
@@ -33,12 +41,16 @@ export const AlertProvider = ({ children }) => {
 
     useEffect(()=>{
         console.log('used effect');
-        // Get alerts from storage
+        // TODO: Get alerts from storage
+
+        // var tempDate = new Date(Date.now());
+        // var tempDisplayDate = `${tempDate.toDateString()} at ${formatTime(tempDate.toLocaleTimeString('en-US'))}`
+
         setAlerts([
             {
                 title: 'Dentist Appointment',
                 body: 'body text',
-                date: Date.now().toString()
+                date: new Date(Date.now())
             }
         ])
     },[])
@@ -47,7 +59,7 @@ export const AlertProvider = ({ children }) => {
         <AlertContext.Provider value={{
             alerts: alerts,
             addAlert: addAlert,
-            formatTime: formatTime
+            formatDateAndTime: formatDateAndTime
         }}>
             { children }
         </AlertContext.Provider>
