@@ -22,7 +22,7 @@ function HomeScreen({navigation}) {
         <>
             <FlatList
                 data={alerts}
-                keyExtractor={(alert)=>alert.title.toString()}
+                keyExtractor={(alert)=>alert.id}
                 renderItem={({item}) => {
                     return (
                       AlertCard(item, formatDateAndTime)

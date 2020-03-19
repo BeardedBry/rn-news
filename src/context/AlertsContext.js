@@ -33,11 +33,15 @@ export const AlertProvider = ({ children }) => {
     const addAlert = ({title, body, date}, cb) => {
         // var displayDate = `${date.toDateString()} at ${formatTime(date.toLocaleTimeString('en-US'))}`;
         // date = displayDate;
-        setAlerts([...alerts, {title, body, date}])
+        setAlerts([...alerts, {title, body, date, id: Date.now().toString()}])
         if(cb){
             cb();
         }
     }
+
+    const getAlert = (id) => {
+        return alerts.map((alert) => alert.id === id);
+    } 
 
     useEffect(()=>{
         console.log('used effect');
@@ -50,16 +54,18 @@ export const AlertProvider = ({ children }) => {
             {
                 title: 'Dentist Appointment',
                 body: 'body text',
-                date: new Date(Date.now())
+                date: new Date(Date.now()),
+                id: (Date.now().toString())
             }
         ])
     },[])
 
     return (
         <AlertContext.Provider value={{
-            alerts: alerts,
-            addAlert: addAlert,
-            formatDateAndTime: formatDateAndTime
+            alerts,
+            addAlert,
+            formatDateAndTime,
+            getAlert
         }}>
             { children }
         </AlertContext.Provider>
