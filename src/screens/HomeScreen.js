@@ -9,10 +9,10 @@ function HomeScreen({navigation}) {
 
 
     const {alerts} = useContext(AlertContext);
-    console.log(alerts);
+    //console.log(alerts);
 
     function navigationTo(id){
-      console.log(id);
+      //console.log(id);
       navigation.navigate('Edit', {id})
     }
 
