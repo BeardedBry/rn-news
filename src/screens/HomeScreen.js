@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import { Button, View, Text, FlatList } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from '../styles/Stylesheet';
 import AlertContext from '../context/AlertsContext';
 import AlertCard from '../components/AlertCard';
@@ -7,8 +8,13 @@ import AlertCard from '../components/AlertCard';
 function HomeScreen({navigation}) {
 
 
-    const {alerts, formatDateAndTime} = useContext(AlertContext);
+    const {alerts} = useContext(AlertContext);
     console.log(alerts);
+
+    function navigationTo(id){
+      console.log(id);
+      navigation.navigate('Edit', {id})
+    }
 
     return (
       <View style={styles.mainStyle}>
@@ -25,25 +31,15 @@ function HomeScreen({navigation}) {
                 keyExtractor={(alert)=>alert.id}
                 renderItem={({item}) => {
                     return (
-                      AlertCard(item, formatDateAndTime)
+                      <TouchableOpacity onPress={()=>navigationTo(item.id)}>
+                        <AlertCard props={item}/>
+                      </TouchableOpacity>
                     );
                 }}
             />
         </>
       </View>
     );
-}
-
-function alertCard({title, body, date}, format) {
-
-  return (
-    <View style={styles.alertCardStyle}>
-      <Text>{title}</Text>
-      <Text>{body}</Text>
-      <View style={styles.hr}/>
-      <Text>{format(date)}</Text>
-    </View>
-  );
 }
 
 export default HomeScreen;

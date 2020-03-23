@@ -1,23 +1,21 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
+import React, {useContext} from 'react';
+import { View, Text } from 'react-native';
 import styles from '../styles/Stylesheet';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import AlertContext from '../context/AlertsContext';
 
-function AlertCard({title, body, date, id}, format) {
+function AlertCard({props}) {
 
-    function navigateTo(){
-        console.log('id:' + id);
-        console.log(navigation);
-        //navigation.navigate('Edit', {id})
-    }
+  const {title, body, date, id} = props;
+
+  const {formatDateAndTime} = useContext(AlertContext);
 
     return (
-      <TouchableOpacity style={styles.alertCardStyle} onPress={navigateTo}>
+      <View style={styles.alertCardStyle}>
         <Text>{title}</Text>
         <Text>{body}</Text>
         <View style={styles.hr}/>
-        <Text>{date ? format(date) : 'choose a date'}</Text>
-      </TouchableOpacity>
+        <Text>{date ? formatDateAndTime(date) : 'choose a date'}</Text>
+      </View>
     );
   }
 
