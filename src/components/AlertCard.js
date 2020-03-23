@@ -16,7 +16,7 @@ function AlertCard({props}) {
         <Text>{body}</Text>
         <View style={styles.hr}/>
         <Text>{date ? formatDateAndTime(date) : 'choose a date'}</Text>
-        {expired ? (<Button title="button" />) : (<></>)}
+        {expired ? (<Button title="button" onPress={()=>console.log('button press')}/>) : (<></>)}
       </View>
     );
   }

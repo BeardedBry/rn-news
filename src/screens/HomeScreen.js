@@ -17,7 +17,6 @@ function HomeScreen({navigation}) {
 
     return (
       <View style={styles.mainStyle}>
-        <Text style={styles.titleStyle}>Alert App</Text>
         <View style={{margin: 5}}>
           <Button
             title="Create New Alert"
@@ -30,6 +29,7 @@ function HomeScreen({navigation}) {
                 keyExtractor={(alert)=>alert.id}
                 renderItem={({item}) => {
                     return (
+                      //TODO: pass in navigationTo into AlertCard, and handle Touchable Opacity in there.
                       <TouchableOpacity onPress={()=>navigationTo(item.id)}>
                         <AlertCard props={item}/>
                       </TouchableOpacity>

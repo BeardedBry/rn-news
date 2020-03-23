@@ -24,7 +24,7 @@ function App() {
           <Stack.Screen 
             name="Home" 
             component={HomeScreen}
-            options={{title: 'Home'}}
+            options={{title: 'Alert App'}}
           />
           <Stack.Screen name="Create" component={CreateScreen} />
           <Stack.Screen name="Edit" component={EditScreen} />
