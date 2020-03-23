@@ -46,19 +46,19 @@ export const AlertProvider = ({ children }) => {
         return match;
     } 
 
-    useEffect(()=>{
-        console.log('used effect');
-        // TODO: Get alerts from storage
+    // useEffect(()=>{
+    //     console.log('used effect');
+    //     // TODO: Get alerts from storage
 
-        setAlerts([
-            {
-                title: 'Dentist Appointment',
-                body: 'body text',
-                date: new Date(Date.now()),
-                id: (Date.now().toString())
-            }
-        ])
-    },[])
+    //     setAlerts([
+    //         {
+    //             title: 'Dentist Appointment',
+    //             body: 'body text',
+    //             date: new Date(Date.now()),
+    //             id: (Date.now().toString())
+    //         }
+    //     ])
+    // },[])
 
     return (
         <AlertContext.Provider value={{

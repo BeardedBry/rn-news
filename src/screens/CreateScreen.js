@@ -8,8 +8,8 @@ import style from '../styles/Stylesheet';
 function CreateScreen({navigation}) {
 
     const {addAlert, formatDateAndTime} = useContext(AlertContext);
-    const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
+    const [title, setTitle] = useState('Default Title');
+    const [body, setBody] = useState('Default Body Text');
 
     // for date picker
     const [date, setDate] = useState(new Date(Date.now()));

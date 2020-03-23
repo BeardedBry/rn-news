@@ -22,6 +22,17 @@ export default StyleSheet.create({
       margin: 5,
       backgroundColor: "white"
     },
+    expiredAlertCardStyle: {
+      padding: 15,
+      margin: 5,
+      backgroundColor: "white",
+      borderColor: 'orange',
+      borderWidth: 3
+    },
+    expiredText:{
+      backgroundColor: "orange",
+      color: "white"
+    },
     hr: {
       borderBottomColor: 'black',
       borderBottomWidth: 1,

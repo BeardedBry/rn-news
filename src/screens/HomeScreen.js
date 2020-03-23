@@ -7,7 +7,6 @@ import AlertCard from '../components/AlertCard';
 
 function HomeScreen({navigation}) {
 
-
     const {alerts} = useContext(AlertContext);
     //console.log(alerts);
 
@@ -27,7 +26,7 @@ function HomeScreen({navigation}) {
         </View>
         <>
             <FlatList
-                data={alerts}
+                data={alerts.sort((a,b) => a.date > b.date)}
                 keyExtractor={(alert)=>alert.id}
                 renderItem={({item}) => {
                     return (
