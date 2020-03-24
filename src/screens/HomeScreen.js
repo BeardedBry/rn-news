@@ -10,7 +10,7 @@ function HomeScreen({navigation}) {
     const {alerts} = useContext(AlertContext);
     //console.log(alerts);
 
-    function navigationTo(id){
+    function navigateTo(id){
       //console.log(id);
       navigation.navigate('Edit', {id})
     }
@@ -25,14 +25,13 @@ function HomeScreen({navigation}) {
         </View>
         <>
             <FlatList
+                style={styles.cardList}
                 data={alerts.sort((a,b) => a.date > b.date)}
                 keyExtractor={(alert)=>alert.id}
                 renderItem={({item}) => {
                     return (
                       //TODO: pass in navigationTo into AlertCard, and handle Touchable Opacity in there.
-                      <TouchableOpacity onPress={()=>navigationTo(item.id)}>
-                        <AlertCard props={item}/>
-                      </TouchableOpacity>
+                      <AlertCard card={item} nav={{navigateTo}}/>
                     );
                 }}
             />

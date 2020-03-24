@@ -12,7 +12,7 @@ function CreateScreen({navigation}) {
     const [body, setBody] = useState('Default Body Text');
 
     // for date picker
-    const [date, setDate] = useState(new Date(Date.now()));
+    const [date, setDate] = useState(new Date(Date.now()+3600000));
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 

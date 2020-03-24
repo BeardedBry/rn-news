@@ -41,6 +41,13 @@ export const AlertProvider = ({ children }) => {
         }
     }
 
+    const removeAlert = (id) => {
+        let newArr = [...alerts];
+        let index = newArr.findIndex((arr) => arr.id == id);
+        newArr.splice(index,1);
+        setAlerts(newArr);
+    }
+
     const getAlert = (id) => {
         const match = alerts.filter(alert => alert.id == id);
         return match;
@@ -64,8 +71,9 @@ export const AlertProvider = ({ children }) => {
         <AlertContext.Provider value={{
             alerts,
             addAlert,
-            formatDateAndTime,
-            getAlert
+            removeAlert,
+            getAlert,
+            formatDateAndTime
         }}>
             { children }
         </AlertContext.Provider>

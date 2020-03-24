@@ -20,7 +20,9 @@ export default StyleSheet.create({
     alertCardStyle: {
       padding: 15,
       margin: 5,
-      backgroundColor: "white"
+      backgroundColor: "white",
+      borderColor: 'gray',
+      borderWidth: 3
     },
     expiredAlertCardStyle: {
       padding: 15,
@@ -33,10 +35,17 @@ export default StyleSheet.create({
       backgroundColor: "orange",
       color: "white"
     },
+    expiredButton:{
+      alignItems: "flex-end"
+    },
     hr: {
       borderBottomColor: 'black',
       borderBottomWidth: 1,
       marginTop: 5,
       marginBottom: 5
+    },
+    cardList: {
+      margin: 5,
+      alignSelf: 'stretch'
     }
 });

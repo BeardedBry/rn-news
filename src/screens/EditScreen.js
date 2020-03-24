@@ -8,7 +8,7 @@ import style from '../styles/Stylesheet';
 function EditScreen({navigation, route}) {
 
   const {id} = route.params;
-  const {getAlert, addAlert, formatDateAndTime} = useContext(AlertContext);
+  const {getAlert, addAlert, removeAlert, formatDateAndTime} = useContext(AlertContext);
   const [alert] = getAlert(id);
 
   const [title, setTitle] = useState(alert.title);
