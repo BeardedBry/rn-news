@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
-const AlertContext = React.createContext({});
+import AsyncStorage from '@react-native-community/async-storage';
 
 function formatTime(time) {
     //https://stackoverflow.com/questions/4898574/converting-24-hour-time-to-12-hour-time-w-am-pm-using-javascript
@@ -15,25 +14,68 @@ function formatTime(time) {
 }
 
 function formatDateAndTime(date) {
+    if(typeof date === "string"){
+        date = new Date(date);
+    }
     let dateString = date.toDateString();
     let timeString = formatTime(date.toLocaleTimeString('en-US'));
     return `${dateString} at ${timeString}`;
 }
 
+async function setStorage(arr){
+    try {
+        var jsonArr = JSON.stringify(arr);
+        //var jsonObj = JSON.stringify({"test": "value"});
+        await AsyncStorage.setItem('localAlerts', jsonArr);
+    }catch(e) {
+        console.error(e);
+    }
+    console.log('done saving to AsyncStorage.');
+}
+
+
+const AlertContext = React.createContext({});
 
 export const AlertProvider = ({ children }) => {
+
     const [alerts, setAlerts] = useState([]);
 
-    const addAlert = ({id, title, body, date}, cb) => {
+    async function getStorage() {
+        var parsed = [];
+        try {
+            const value = await AsyncStorage.getItem('localAlerts');
+            parsed = await JSON.parse(value);
+        }catch(e){
+            console.log(e,'failed to get storage');
+            return [];
+        }
+        console.log('parsed: ', parsed);
+        setAlerts(parsed);
+    }
 
+
+    const addAlert = ({id, title, body, date}, cb) => {
         //if id is provided then update instead of add
         if(id){
             let newArr = [...alerts];
             let index = newArr.findIndex((arr) => arr.id == id);
             newArr[index] = {title, body, date, id};
-            setAlerts(newArr);
+            try{
+                setAlerts(newArr);
+                //AsyncStorage
+                setStorage(newArr);
+            }catch(e){
+                console.log(e, 'error setting storage');
+            }
+
         }else{
-            setAlerts([...alerts, {title, body, date, id: Date.now().toString()}])
+            try{
+                setAlerts([...alerts, {title, body, date, id: Date.now().toString()}])
+                //AsyncStorage
+                setStorage([...alerts, {title, body, date, id: Date.now().toString()}]);
+            }catch(e){
+                console.log(e, 'error setting storage');
+            }
         }
 
         if(cb){
@@ -53,19 +95,11 @@ export const AlertProvider = ({ children }) => {
         return match;
     } 
 
-    // useEffect(()=>{
-    //     console.log('used effect');
-    //     // TODO: Get alerts from storage
-
-    //     setAlerts([
-    //         {
-    //             title: 'Dentist Appointment',
-    //             body: 'body text',
-    //             date: new Date(Date.now()),
-    //             id: (Date.now().toString())
-    //         }
-    //     ])
-    // },[])
+    useEffect(()=>{
+        console.log('AlertContext used effect');
+        // TODO: Get alerts from storage
+        getStorage();
+    },[])
 
     return (
         <AlertContext.Provider value={{
@@ -73,7 +107,7 @@ export const AlertProvider = ({ children }) => {
             addAlert,
             removeAlert,
             getAlert,
-            formatDateAndTime
+            formatDateAndTime,
         }}>
             { children }
         </AlertContext.Provider>

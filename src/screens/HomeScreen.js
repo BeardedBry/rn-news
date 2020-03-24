@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { Button, View, Text, FlatList } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from '../styles/Stylesheet';
@@ -7,13 +7,14 @@ import AlertCard from '../components/AlertCard';
 
 function HomeScreen({navigation}) {
 
-    const {alerts} = useContext(AlertContext);
-    //console.log(alerts);
+    const {alerts, loadInitialStorage} = useContext(AlertContext);
+    console.log('alerts',alerts);
 
     function navigateTo(id){
       //console.log(id);
       navigation.navigate('Edit', {id})
     }
+
 
     return (
       <View style={styles.mainStyle}>
