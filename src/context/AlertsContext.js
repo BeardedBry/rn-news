@@ -88,6 +88,11 @@ export const AlertProvider = ({ children }) => {
         let index = newArr.findIndex((arr) => arr.id == id);
         newArr.splice(index,1);
         setAlerts(newArr);
+        try{
+            setStorage(newArr);
+        }catch(e){
+            console.log(e, 'error setting storage');
+        }
     }
 
     const getAlert = (id) => {

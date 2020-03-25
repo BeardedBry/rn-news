@@ -7,7 +7,7 @@ import AlertCard from '../components/AlertCard';
 
 function HomeScreen({navigation}) {
 
-    const {alerts, loadInitialStorage} = useContext(AlertContext);
+    const { alerts } = useContext(AlertContext);
     console.log('alerts',alerts);
 
     function navigateTo(id){
@@ -18,7 +18,7 @@ function HomeScreen({navigation}) {
 
     return (
       <View style={styles.mainStyle}>
-        <View style={{margin: 5}}>
+        <View style={styles.fullWidthButton}>
           <Button
             title="Create New Alert"
             onPress={() => navigation.navigate('Create')}
@@ -27,7 +27,7 @@ function HomeScreen({navigation}) {
         <>
             <FlatList
                 style={styles.cardList}
-                data={alerts.sort((a,b) => a.date > b.date)}
+                data={alerts.sort((a,b) => Date.parse(a.date) > Date.parse(b.date))}
                 keyExtractor={(alert)=>alert.id}
                 renderItem={({item}) => {
                     return (

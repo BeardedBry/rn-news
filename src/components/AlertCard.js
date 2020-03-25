@@ -8,9 +8,9 @@ function AlertCard({card, nav}) {
 
   const {title, body, date, id} = card;
   const {navigateTo} = nav;
-  const {formatDateAndTime, removeAlert} = useContext(AlertContext);
+  const {formatDateAndTime, removeAlert } = useContext(AlertContext);
 
-  const expired = Date.now() > date;
+  const expired = Date.now() > Date.parse(date);
 
     return (
       <View style={expired ? styles.expiredAlertCardStyle : styles.alertCardStyle }>

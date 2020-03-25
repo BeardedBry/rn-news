@@ -4,31 +4,31 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 export default StyleSheet.create({
     mainStyle: {
       flex: 1, 
-      alignItems: 'center'
+      alignItems: 'center',
     },
-    titleStyle: {
-      padding: 20, 
-      fontSize: 15
+    innerFrame: {
+      margin: 10,
+      marginTop: 20
     },
     inputStyle: {
       backgroundColor: "white",
       height: 40
     },
-    bodyStyle: {
+    inputBodyStyle: {
       backgroundColor: "white",
     },
     alertCardStyle: {
       padding: 15,
       margin: 5,
       backgroundColor: "white",
-      borderColor: 'gray',
+      borderColor: '#231F20',
       borderWidth: 3
     },
     expiredAlertCardStyle: {
       padding: 15,
       margin: 5,
       backgroundColor: "white",
-      borderColor: 'orange',
+      borderColor: '#FED766',
       borderWidth: 3
     },
     expiredText:{
@@ -47,5 +47,5 @@ export default StyleSheet.create({
     cardList: {
       margin: 5,
       alignSelf: 'stretch'
-    }
+    },
 });

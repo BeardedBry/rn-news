@@ -20,7 +20,7 @@ function EditScreen({navigation, route}) {
   const [show, setShow] = useState(false);
 
   return (
-    <View>
+    <View style={style.innerFrame}>
       <Text>Title:</Text>
       <TextInput
           style={style.inputStyle}
@@ -31,7 +31,7 @@ function EditScreen({navigation, route}) {
       <TextInput
           multiline
           numberOfLines={1}
-          style={style.bodyStyle}
+          style={style.inputBodyStyle}
           onChangeText={text => setBody(text)}
           value={body}
       />

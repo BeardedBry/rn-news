@@ -17,8 +17,7 @@ function CreateScreen({navigation}) {
     const [show, setShow] = useState(false);
 
     return (
-      <View>
-        <Text>Create Alert</Text>
+      <View style={style.innerFrame}>
         <Text>Title:</Text>
         <TextInput
             style={style.inputStyle}
@@ -29,7 +28,7 @@ function CreateScreen({navigation}) {
         <TextInput
             multiline
             numberOfLines={1}
-            style={style.bodyStyle}
+            style={style.inputBodyStyle}
             onChangeText={text => setBody(text)}
             value={body}
         />
