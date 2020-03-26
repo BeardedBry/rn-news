@@ -46,9 +46,6 @@ function App() {
           <Stack.Screen 
             name="Edit" 
             component={EditScreen}
-            // options={({navigation, route}) => ({
-            //   headerRight: props => <RemoveButton {...props} />,
-            // })}
           />
         </Stack.Navigator>
       </NavigationContainer>

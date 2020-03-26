@@ -39,6 +39,7 @@ const AlertContext = React.createContext({});
 export const AlertProvider = ({ children }) => {
 
     const [alerts, setAlerts] = useState([]);
+    const [removals, setRemovals] = useState([]);
 
     async function getStorage() {
         var parsed = [];
@@ -87,6 +88,7 @@ export const AlertProvider = ({ children }) => {
         let newArr = [...alerts];
         let index = newArr.findIndex((arr) => arr.id == id);
         newArr.splice(index,1);
+
         setAlerts(newArr);
         try{
             setStorage(newArr);
@@ -96,8 +98,12 @@ export const AlertProvider = ({ children }) => {
     }
 
     const getAlert = (id) => {
-        const match = alerts.filter(alert => alert.id == id);
-        return match;
+        try {
+            const match = alerts.filter(alert => alert.id == id);
+            return match;
+        }catch(e){
+            console.error('id not found');
+        }
     } 
 
     useEffect(()=>{
@@ -111,6 +117,8 @@ export const AlertProvider = ({ children }) => {
             alerts,
             addAlert,
             removeAlert,
+            removals,
+            setRemovals,
             getAlert,
             formatDateAndTime,
         }}>

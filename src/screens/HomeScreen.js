@@ -7,14 +7,24 @@ import AlertCard from '../components/AlertCard';
 
 function HomeScreen({navigation}) {
 
-    const { alerts } = useContext(AlertContext);
-    //console.log('alerts',alerts);
+    const { alerts, removals, removeAlert } = useContext(AlertContext);
 
+    //console.log('alerts',alerts);
     function navigateTo(id){
       //console.log(id);
       navigation.navigate('Edit', {id})
     }
 
+    //TODO: fix Bug with removing an alert from inside edit screen
+
+    // useEffect(()=>{
+    //   console.log(removals);
+    //   if(removals.length > 0){
+    //     setTimeout(()=>{
+    //       removeAlert(removals[0]);
+    //     }, 100)
+    //   }
+    // },[removals])
 
     return (
       <View style={styles.mainStyle}>
@@ -32,7 +42,7 @@ function HomeScreen({navigation}) {
                 renderItem={({item}) => {
                     return (
                       //TODO: pass in navigationTo into AlertCard, and handle Touchable Opacity in there.
-                      <AlertCard card={item} nav={{navigateTo}}/>
+                      <AlertCard card={item} nav={{navigateTo}} />
                     );
                 }}
             />
