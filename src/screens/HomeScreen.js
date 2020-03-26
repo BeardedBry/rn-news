@@ -8,7 +8,7 @@ import AlertCard from '../components/AlertCard';
 function HomeScreen({navigation}) {
 
     const { alerts } = useContext(AlertContext);
-    console.log('alerts',alerts);
+    //console.log('alerts',alerts);
 
     function navigateTo(id){
       //console.log(id);
@@ -18,7 +18,7 @@ function HomeScreen({navigation}) {
 
     return (
       <View style={styles.mainStyle}>
-        <View style={styles.fullWidthButton}>
+        <View style={styles.buttonCreate}>
           <Button
             title="Create New Alert"
             onPress={() => navigation.navigate('Create')}

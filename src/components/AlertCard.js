@@ -18,7 +18,7 @@ function AlertCard({card, nav}) {
           <Text>{title}</Text>
           <Text>{body}</Text>
           <View style={styles.hr}/>
-          <Text>{date ? formatDateAndTime(date) : 'choose a date'}</Text>
+          <Text style={expired ? styles.textDateExpired : styles.textDate}>{date ? formatDateAndTime(date) : 'no date chosen'}</Text>
         </TouchableOpacity>
         <View style={styles.expiredButton} >
           {expired ? (<Button title="Remove" color="orange" onPress={()=>removeAlert(id)}/>) : (<></>)}

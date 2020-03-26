@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useLayoutEffect} from 'react';
 import { Button, View, Text, TextInput } from 'react-native';
 import AlertContext from '../context/AlertsContext';
 import DateFields from '../components/DateFields';
@@ -18,6 +18,24 @@ function EditScreen({navigation, route}) {
   const [date, setDate] = useState(alert.date);
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+
+
+  // Header remove button
+  useLayoutEffect(()=> {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button 
+          title="remove"
+          color="red"
+          onPress={()=>{
+            console.log(id);
+            //removeAlert(id)
+          }}
+      />
+      ),
+    });
+  }, [navigation, removeAlert])
+
 
   return (
     <View style={style.innerFrame}>

@@ -24,6 +24,10 @@ export default StyleSheet.create({
       borderColor: '#231F20',
       borderWidth: 3
     },
+    buttonCreate: {
+      margin: 10,
+      marginTop: 20
+    }, 
     expiredAlertCardStyle: {
       padding: 15,
       margin: 5,
@@ -31,12 +35,9 @@ export default StyleSheet.create({
       borderColor: '#FED766',
       borderWidth: 3
     },
-    expiredText:{
-      backgroundColor: "orange",
-      color: "white"
-    },
     expiredButton:{
-      alignItems: "flex-end"
+      alignItems: "flex-end",
+      marginTop: 10
     },
     hr: {
       borderBottomColor: 'black',
@@ -47,5 +48,14 @@ export default StyleSheet.create({
     cardList: {
       margin: 5,
       alignSelf: 'stretch'
+    },
+    textDate:{
+      color: "black",
+      fontSize: 20
+    },
+    textDateExpired:{
+      backgroundColor: "#FED766",
+      color: "black",
+      fontSize: 20
     },
 });

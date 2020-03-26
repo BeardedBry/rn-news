@@ -49,7 +49,7 @@ export const AlertProvider = ({ children }) => {
             console.log(e,'failed to get storage');
             return [];
         }
-        console.log('parsed: ', parsed);
+        //console.log('parsed: ', parsed);
         setAlerts(parsed);
     }
 

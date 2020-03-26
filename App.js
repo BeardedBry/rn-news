@@ -5,6 +5,7 @@
 
 import 'react-native-gesture-handler';
 import React from 'react';
+import { Button } from 'react-native';
 import {AlertProvider} from './src/context/AlertsContext';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -41,7 +42,14 @@ function App() {
            options={{
             title: 'Create',
           }}/>
-          <Stack.Screen name="Edit" component={EditScreen} />
+          {console.log(AlertProvider)}
+          <Stack.Screen 
+            name="Edit" 
+            component={EditScreen}
+            // options={({navigation, route}) => ({
+            //   headerRight: props => <RemoveButton {...props} />,
+            // })}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </AlertProvider>
